@@ -16,5 +16,5 @@ if TYPE_CHECKING:
 
 class User(Base, IdIntPrimMixin, SQLAlchemyBaseUserTable[UserIdType]):
     @classmethod
-    def get_db(cls, session: AsyncSession):
+    def get_db(cls, session:"AsyncSession"):
         return SQLAlchemyUserDatabase(session, User)
