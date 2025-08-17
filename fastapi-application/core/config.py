@@ -29,6 +29,9 @@ class DatabaseConfig(BaseModel):
     "pk": "pk_%(table_name)s",
     }
 
+class AccessToken(BaseModel):
+    lifetime_seconds = 3600
+
 
 class Setting(BaseSettings):
     model_config = SettingsConfigDict(
@@ -40,6 +43,7 @@ class Setting(BaseSettings):
     run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()    
     db: DatabaseConfig 
+    access_token: AccessToken = AccessToken()
 
 
 setting = Setting()
