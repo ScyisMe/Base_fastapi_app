@@ -27,7 +27,7 @@ class DatabesaHelper:
         )
         self.session_factory: async_sessionmaker[AsyncSession] = async_sessionmaker(
             bind=self.engine,
-            autofulsh=False,
+            autoflush=False,
             autocommit=False,
             expire_on_commit=False,
         )
