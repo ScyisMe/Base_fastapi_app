@@ -6,7 +6,6 @@ from fastapi_users_db_sqlalchemy.access_token import (
 )
 from core.model.db_helper import db_helper
 from core.model import AccessToken
-from 
 
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
