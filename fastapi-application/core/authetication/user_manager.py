@@ -21,6 +21,9 @@ class UserManager(IdIntPrimMixin, BaseUserManager[User, UserIdType]):
     
     reset_password_token_secret = setting.access_token.reset_password_token_secret
     verification_token_secret = setting.access_token.verification_token_secret
+    
+    def parse_id(self, id: str) -> UserIdType:
+        return int(id)
 
     async def on_after_register(self, user: User, request: Optional["Request"] = None):
         log.warning("User %r has registered.", user.id)
