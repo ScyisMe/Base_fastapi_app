@@ -10,9 +10,16 @@ class ApiV1Prefix(BaseModel):
     prefix: str = "/v1"
     auth: str = "/auth"
     
+    
 class ApiPrefix(BaseModel):
     prefix: str = "/api"
     v1: ApiV1Prefix = ApiV1Prefix()
+    
+    @property
+    def barer_token_url(self) ->str:
+        parts = (self.prefix, self.v1.prefix, self.v1.auth, "/loggin")
+        path = "".join(parts)
+        return path.removeprefix("/")
     
 class DatabaseConfig(BaseModel):
     url: PostgresDsn
@@ -30,7 +37,7 @@ class DatabaseConfig(BaseModel):
     }
 
 class AccessToken(BaseModel):
-    lifetime_seconds = 3600
+    lifetime_seconds: int = 3600
     reset_password_token_secret: str 
     verification_token_secret: str
 
@@ -45,9 +52,8 @@ class Setting(BaseSettings):
     run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()    
     db: DatabaseConfig 
-    access_token: AccessToken = AccessToken()
+    access_token: AccessToken 
 
 
 setting = Setting()
-print(setting.db.url)
-print(setting.db.echo)
+print(setting.model_dump())
