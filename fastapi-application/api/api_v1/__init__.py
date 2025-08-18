@@ -6,6 +6,7 @@ from core.config import setting
 
 from .auth import router as auth_router
 from .users import router as user_router
+from .messages import router as message_router
 
 http_bearer = HTTPBearer(auto_error=False)
 
@@ -20,4 +21,7 @@ router.include_router(
 
 router.include_router(
     user_router,
+)
+router.include_router(
+    router=message_router,
 )
