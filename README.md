@@ -1,7 +1,14 @@
 # FastAPI Example App
 
+###Start
 ```shell
-gunicorn main:main_app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+docker-compose up -d
+
+```
+
+###Url
+```shell
+http://localhost:8000/docs#/
 ```
 
 Resources:
@@ -21,15 +28,3 @@ Resources:
 - orjson https://github.com/ijl/orjson
 - FastAPI ORJSONResponse https://fastapi.tiangolo.com/advanced/custom-response/#use-orjsonresponse
 
-
-```shell
-taskiq worker core:broker --fs-discover --tasks-pattern "**/tasks"
-taskiq worker core:broker --workers 1 --no-configure-logging --fs-discover --tasks-pattern "**/tasks"
-```
-
-### FastStream
-
-```shell
-faststream run fs_subs.app:app
-faststream docs serve fs_subs.app:app --port 8081
-```
